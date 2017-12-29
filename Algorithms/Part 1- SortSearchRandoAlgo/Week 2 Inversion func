@@ -1,0 +1,42 @@
+#Merge count recursive inversions
+def inversion(array,count):
+    #COUNT inversions recursively
+    m = len(array)/2 + len(array)%2
+    if m < 2:
+        left = array[:1]
+        right = array[1:]
+        if right == []:
+            return left,0
+        else:
+            split,c3 = splitinversion(left,right,count)
+            count = count + c3
+            return split,count
+    else:
+        left,c1 = inversion(array[:m],count) #returns small array
+        right,c2 = inversion(array[m:],count) #returns small array
+        split,c3 = splitinversion(left,right,count) #calls splitinversion to COUNT
+        count = c1+c2+c3
+    return split,count
+
+def splitinversion(left,right,count):
+    b = left
+    i = 0
+    c = right
+    j = 0
+    a=[]
+    while i < len(left) and j < len(right):
+        #print ("b[i] is {}".format(b[i]))
+        #print ("c[j] is {}".format(c[j]))
+        if int(b[i]) < int(c[j]):
+            a.append(b[i])
+            i += 1
+            if i == len(left):
+                a = a+c[j:]
+        else:
+            a.append(c[j])
+            count = count + (len(left)-i)
+            j += 1
+            if j == len(right):
+                a = a+b[i:]
+    result = a
+    return result,count

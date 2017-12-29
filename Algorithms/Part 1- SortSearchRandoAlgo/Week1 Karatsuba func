@@ -1,0 +1,22 @@
+def karatsuba(n1,n2):
+    """Karatsuba multiplication"""
+    #Base case
+    if len(str(n1)) <= 2 or len(str(n2)) <= 2:
+        return n1*n2
+    else:
+        #max of length of n1/n2 input
+        n = max(len(str(n1)),len(str(n2)))
+        nby2 = n/2
+
+        a = int(str(n1)[:nby2])
+        b = int(str(n1)[nby2:])
+        c = int(str(n2)[:nby2])
+        d = int(str(n2)[nby2:])
+
+        ac = karatsuba(a,c)
+        bd = karatsuba(b,d)
+        adbc = karatsuba((a+b),(c+d)) - ac - bd
+
+        product = (10**(2*nby2) * ac) + (10**nby2 * adbc) + bd
+
+    return product

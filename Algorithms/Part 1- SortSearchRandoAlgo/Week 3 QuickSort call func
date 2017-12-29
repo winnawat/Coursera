@@ -1,0 +1,37 @@
+#Week 3 QuickSort
+
+with open('txt file location','r') as f:
+    array = f.read().split('\n')
+    print ("Your Array is {}".format (array))
+
+array1, array2, array3 = [array, array, array]
+array1 = array1[:]
+array2 = array2[:]
+array3 = array3[:]
+
+#print array1
+#print array2
+#print array3
+
+from QuickSortFirst import *
+array1 = quicksortfirst(array1,0,(len(array1)-1))
+firstcount = first_counted()
+print "firstcount is {}".format(firstcount)
+
+#print array1
+#print array2
+#print array3
+
+from QuickSortLast import *
+array2 = quicksortlast(array2,0,(len(array2)-1))
+lastcount = last_counted()
+print "lastcount is {}".format(lastcount)
+
+from QuickSortMid import *
+array3 = quicksortmid(array3,0,(len(array3)-1))
+midcount = mid_counted()
+print "midcount is {}".format(midcount)
+
+#print array1
+#print array2
+#print array3

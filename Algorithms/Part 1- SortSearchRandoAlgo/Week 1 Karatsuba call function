@@ -1,0 +1,13 @@
+#KARATSUBA MULTIPLICATION
+
+number_1 = input ("Please enter number_1:")
+
+number_2 = input ("Please enter number_2:")
+
+print ("Your number_1 is: " + str(number_1) + "\nYour number_2 is: " + str(number_2))
+
+from karatsuba import karatsuba
+
+product = karatsuba(number_1,number_2)
+
+print (product)

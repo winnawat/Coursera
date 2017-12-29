@@ -1,0 +1,59 @@
+midcount = 0
+
+def quicksortmid (array,l,r):
+    if l == r or l >= r:
+        return array
+    else:
+        #print array,l,r
+        array,i = partitionmid(array,l,r)
+        array = quicksortmid(array,l,i-2)
+        array = quicksortmid(array,i,r)
+    return array
+
+def partitionmid (array,l,r):
+    #print "l is {} r is {}".format(l,r)
+    medianpos = l + int((r-l)/2)
+    midval = median(array[l],array[medianpos], array[r])
+    #print "midval is {} of {}, where l = {}, medianpos = {} and r = {}".format(midval,array,l,medianpos,r)
+    if midval == int(array[medianpos]):
+        pposition = medianpos
+    elif midval == int(array[l]):
+        pposition = l
+    elif midval == int(array[r]):
+        pposition = r
+    else:
+        print "pposition not found!"
+    #print "pposition = {}".format(pposition)
+    p = array[pposition]
+    array = swapmid(array,l,pposition)
+    global midcount
+    midcount = midcount + r - l
+    i = l + 1
+    for j in range((l+1),r+1):
+        if int(array[j]) < int(p):
+            array = swapmid(array,j,i)
+            i += 1
+        j += 1
+        #print array
+    array = swapmid(array,l,(i-1))
+    #print array
+    #print "i = {}".format(i)
+    return array,i
+
+def swapmid (array,j,i):
+    array[j], array[i] = array[i], array[j]
+    return array
+
+def mid_counted ():
+    return midcount
+
+def median (a,b,c):
+    a = int(a)
+    b = int(b)
+    c = int(c)
+    numlist = [a,b,c]
+    nummax = max(numlist)
+    nummin = min(numlist)
+    med = a + b + c - nummax - nummin
+    #print "median of {} {} {} is {}".format(a,b,c,med)
+    return med

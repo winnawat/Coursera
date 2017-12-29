@@ -1,0 +1,12 @@
+with open('input txt file','r') as f:
+    array = f.read().split('\n')
+    print ("Your Array is {}".format (array))
+
+count = 0
+print ("count is {}".format(count))
+from Inversion import *
+
+counted,count = inversion(array,count)
+
+print counted
+print count
